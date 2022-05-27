@@ -16,10 +16,27 @@ typedef struct{
 typedef struct{
     int x,y;
 }manz;
+typedef struct{
+    int x,y;
+    int modx,mody;
+    char coche;
+
+}car;
+
+car tu[q];
+car ia[q];
 
 snake ser[n];
 manz fru;
 
+void inicioc(char mapac[l][a]);
+void inputmapac(char mapac[l][a]);
+void printmapc(char mapac[l][a]);
+void inputdatoc(char mapac[l][a]);
+void inputc(char mapac[l][a],int *muerte);
+void reescribirc(char mapac[l][a]);
+void inputdato2c(char mapac[l][a]);
+void buclec(char mapac[l][a]);
 void inicio(int *tam,char mapa[v][h]);
 void inputmapa(char mapa[v][h]);
 void inputdato(char mapa[v][h],int tam);
@@ -1180,7 +1197,11 @@ return 0;
      
  }
  void coches(){
-     
+     char mapac[l][a];
+
+inicioc(mapac);
+buclec(mapac);
+return 0;
  }
 void texto1 ()
  {
@@ -1388,5 +1409,165 @@ i= tam-1;
 
     mapa[fru.y][fru.x] = 6;
 }
+void inicioc(char mapac[l][a]){
+int i;
+i=0;
+
+srand(time(NULL));
+
+tu[0].x = 2;
+tu[0].y = 16;
+ia[0].x = rand() % (a-1);
+
+while(ia[0].x == 0){
+
+ia[0].x = rand() % (a-1);
+}
+ia[0].y = 0;
+
+for (i=0; i<q; i++){
+
+    ia[i].mody = 1;
+}
+inputmapac(mapac);
+inputdatoc(mapac);
+}
+
+void inputmapac(char mapac[l][a]){
+int i,j;
+    i=0;
+    j=0;
+
+    for (i=0;i<l;i++){
+        for (j=0;j<a;j++){
+            if (j == 0 || j == a-1){
+                mapac[i][j]= '|';
+            }
+            else{
+                mapac[i][j]= ' ';
+            }
+        }
+    }
+
+}
+
+void printmapc(char mapac[l][a]){
+int i,j;
+
+for(i=0; i<l;i++){
+    for(j=0;j<a;j++){
+        printf("%c", mapac[i][j]);
+    }
+    printf("\n");
+    }
+}
+
+void inputdatoc(char mapac[l][a]){//Datos del mapa
+int i;
+i=1;
+
+for(i=1; i<q;i++){
+    ia[i].x = ia[i-1].x ;
+    ia[i].y = ia[i-1].y + 1;
+
+    tu[i].x = tu[i-1].x;
+    tu[i].y = tu[i-1].y - 1;
+
+    ia[i].coche = 'º';
+    tu[i].coche = 'º';
+}
+
+ia[0].coche = 'º';
+tu[0].coche = 'º';
+
+for (i=0; i<q; i++){
+    mapac[ia[i].y][ia[i].x] = ia[i].coche;
+}
+for (i=0; i<q; i++){
+    mapac[tu[i].y][tu[i].x] = tu[i].coche;
+}
+}
+void buclec(char mapac[l][a]){
+
+int muerte;
+muerte = 0;
+
+
+do{
+    system("cls"); //system("clear"); en Linux
+    printmapc(mapac);
+    inputc(mapac, &muerte);
+    reescribirc(mapac);
+
+}while(muerte == 0);
+
+}
+void inputc(char mapac[l][a], int *muerte){
+int i;
+i=1;
+char letra;
+
+    for(i=1; i<q && *muerte == 0 ; i++){
+        if(tu[0].x == ia[i].x && tu[0].y == ia[i].y){
+            *muerte = 1;
+        }
+    }
+
+    if(ia[0].y == 17){
+        ia[0].x = rand() % (a-1);
+
+        while(ia[0].x == 0){
+
+        ia[0].x = rand() % (a-1);
+        }
+        ia[0].y = 0;
+        }
+    if(*muerte == 0){
+        if(kbhit() == 1){
+           letra = getch();
+           }
+           if(letra == 'a' && tu[0].x !=1){
+            tu[0].x += -1;
+            tu[0].mody = 0;
+           }
+           if(letra == 'd' && tu[0].x !=3){
+            tu[0].x += 1;
+            tu[0].mody = 0;
+           }
+        }
+    }
+
+void reescribirc(char mapac[l][a]){
+ inputmapac(mapac);
+
+ inputdato2c(mapac);
+
+}
+void inputdato2c(char mapac[l][a]){
+int i;
+i= q-1;
+    for(i=q-1; i>0; i--){
+        tu[i].x = tu[i-1].x;
+
+    }
+
+
+i= q-1;
+    for(i=q-1; i>0; i--){
+        ia[i].x = ia[i-1].x;
+        ia[i].y = ia[i-1].y;
+    }
+
+    ia[0].x += ia[0].modx;
+    ia[0].y += ia[0].mody;
+
+    for(i=0; i<q; i++){
+        mapac[tu[i].y][tu[i].x] = tu[i].coche;
+        mapac[ia[i].y][ia[i].x] = ia[i].coche;
+    }
+
+
+}
+
 
 
