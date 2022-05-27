@@ -77,8 +77,7 @@ int main()
     elegir=0;
     printf("Elige entre las opciones introduciendo el numero de delante\n");
     printf("10 Iniciar sesion con el email \n ");
-    printf("20 Iniciar sesion con fecha y nombre \n");
-    printf("30 Registrarse\n");
+    printf("20 Registrarse\n");
     printf("Opcion:");
     scanf("%i", &elegir);
     switch (elegir)
@@ -116,17 +115,22 @@ int main()
                 printf("Eres un detective en colombia.");
                 introduccion();
                 juego1();
+                printf("Continuamos, pulsa cualquier numero\n");
                 scanf("%i", &gato);
                 texto1();
-                printf("Continuamos, pulsa 15\n");
+                printf("Continuamos, pulsa cualquier numero\n");
                 scanf("%i", &perro);
                 snakez();
+                printf("Continuamos, pulsa cualquier numero\n");
                 scanf("%i", &gato);
                 texto2();
+                printf("Continuamos, pulsa cualquier numero\n");
                 scanf("%i", &gato);
                 ahorcado();
+                printf("Continuamos, pulsa cualquier numero\n");
                 scanf("%i", &gato);
                 texto3();
+                printf("Continuamos, pulsa cualquier numero\n");
                 scanf("%i", &gato);
                 coches();
                 texto4();
@@ -137,53 +141,11 @@ int main()
             }
             break;
 
-            case 20:
 
 
-    iniciosesionfecha=fopen ("INICIOSESIONfecha.txt", "a");
-    printf ("introduzca su nombre\n");
-    scanf ("%s", nombre);
-    printf("introduzca su fecha de nacimiento sin guiones ni espacios (diamesaño)\n");
-    scanf ("%s", fecha);
-    fprintf (iniciosesionfecha, "USUARIO\n FECHA\t");
-    fprintf(iniciosesionfecha, "%s\n", nombre);
-    fprintf(iniciosesionfecha, "%i", fecha);
-
-    fclose (iniciosesionfecha);
-            //Se supone que aquí te lo verifica y tal pero es con ficheros y no se jajaja
-            printf("¿Que quieres hacer? \n");
-            printf("40 Salir. \n");
-            printf("50 Jugar. \n");
-
-            scanf("%i", &elegir);
 
 
-            switch (elegir)
-                {
-                case 40://Salir
-                elegir=0;
-
-                break;
-
-                case 50://Jugar
-                elegir=0;
-                printf("Eres un detective en colombia.");
-               introduccion();
-     juego1();
-    texto1();
-     snakez();
-    texto2();
-     ahorcado();
-    texto3();
-     coches();
-    texto4();
-                break;
-
-            }
-        break;
-
-
-    case 30://Registrarse
+    case 20://Registrarse
     elegir=0;
     printf ("Registarse\n");
 
@@ -255,17 +217,16 @@ int main()
 	    if(puerta==3)
 	    {
 	    printf("Vale, esto parece un camarote, voy a mirar\n");
-		printf("*Hay una comoda(4), una mesilla(5) y una estanteria(6), donde deberia mirar primero?");
-		scanf("%i",&primero);
+		printf("*Hay una comoda y una mesilla, voy a mirar en la comoda\n");
+		primero = 4;
 		if(primero==4)
 		{
 			printf("Voy a mirar en el cajon de arriba. *Hay una camisa blanca sudada, y una medalla al honor de Estados Unidos\n");
-			printf("Introduce (5) o (6)\n");
-			scanf("%i",&primero);
+            primero = 5 ;
 			if(primero==5)
 			{
 				printf("Aqui lo unico que hay son ropa interior sudada y mucho polvo, alucino\n");
-				printf("Ya solo me queda mirar en la estanteria.\n");
+				printf("Anda si ahi habia una estanteria, voy a mirar");
 				printf("BINGO!Aqui esta la llave, volvamos a la puerta 2!\n");
 
 				printf("Bien, ya estoy en la puerta 2, vamos a probar la llave\n");
@@ -378,7 +339,6 @@ else if(salida==2)
 }
 
 }
-
 
 
 }
@@ -1227,7 +1187,7 @@ void texto1 ()
      printf("Echas a andar y despues de varios kilometros, empiezas a oir voces y canticos de humanos\n");
      printf("Cual es tu sorpresa cuando te acercas y ves una tribu indigena\n");
      printf("*pensamiento interno* ¿Voy hacia ellos? ¿Me alejo? Ire\n");
-     printf("Indigena 1:si quieres pertener a nuestra tribu deberás pasar la prueba DIOSA");
+     printf("Indigena 1:si quieres pertener a nuestra tribu deberás pasar la prueba DIOSA\n");
 
  }
  void texto3 ()
@@ -1241,6 +1201,7 @@ void texto1 ()
  }
  void texto4 ()
  {
+
      printf ("ADIOS LATAM\n");
  }
 void inicio(int *tam,char mapa[v][h]){
@@ -1579,6 +1540,7 @@ i= q-1;
 
 
 }
+
 
 
 
