@@ -1,15 +1,42 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define v 21
+#define h 65
+#define n 1230
+
+typedef struct{
+    int x,y;
+    int modx,mody;
+    char imagen;
 
 
+}snake;
+
+typedef struct{
+    int x,y;
+}manz;
+
+snake ser[n];
+manz fru;
+
+void inicio(int *tam,char mapa[v][h]);
+void inputmapa(char mapa[v][h]);
+void inputdato(char mapa[v][h],int tam);
+void printmap(char mapa[v][h]);
+void bucle(char mapa[v][h], int tam);
+void input(char mapa[v][h], int *tam, int *muerte);
+void reescribir(char mapa[v][h],int tam);
+void inputdato2(char mapa[v][h], int tam);
 void introduccion();
 void juego1();
- void snake();
- void texto1 ();
- void ahorcado();
- void texto2 ();
- void coches();
- void texto3 ();
- void texto4 ();
+void snake();
+void texto1 ();
+void ahorcado();
+void texto2 ();
+void coches();
+void texto3 ();
+void texto4 ();
 
 
 
@@ -1024,6 +1051,14 @@ return 0;
 	  
  }
  void snake(){
+	 int tam;
+char mapa[v][h];
+
+inicio(&tam,mapa);
+bucle(mapa,tam);
+
+system("pause");
+return 0;
      
  }
  void ahorcado(){
@@ -1176,5 +1211,182 @@ void texto1 ()
  {
      printf ("ADIOS LATAM\n");
  }
+void inicio(int *tam,char mapa[v][h]){
+int i;
+i=0;
+
+ser[0].x = 32;
+ser[0].y = 10;
+
+*tam = 4;
+
+srand(time(NULL));
+
+fru.x = rand() % (h-1);
+fru.y = rand() % (v-1);
+
+while(fru.x == 0){
+
+fru.x = rand() % (h-1);
+}
+while(fru.y == 0){
+
+fru.y = rand() % (v-1);
+}
+for (i=0; i<*tam; i++){
+
+    ser[i].modx = 1;
+    ser[i].mody = 0;
+}
+inputmapa(mapa);
+inputdato(mapa, *tam);
+
+}
+
+void inputmapa(char mapa[v][h]){//Creamos el mapa
+    int i,j;
+    i=0;
+    j=0;
+
+    for (i=0;i<v;i++){
+        for (j=0;j<h;j++){
+            if (i == 0 || i == v-1){
+                mapa[i][j]= 244;
+            }
+            else if (j == 0 || j == h-1){
+                mapa[i][j]= '|';
+            }
+            else{
+                mapa[i][j]= ' ';
+            }
+        }
+    }
+}
+
+void inputdato(char mapa[v][h],int tam){//Datos del mapa
+int i;
+i=1;
+
+for(i=1; i<tam;i++){
+    ser[i].x = ser[i-1].x - 1;
+    ser[i].y = ser[i-1].y;
+
+    ser[i].imagen = 'x';
+}
+
+ser[0].imagen = 1;
+
+for (i=0; i<tam; i++){
+    mapa[ser[i].y][ser[i].x] = ser[i].imagen;
+}
+mapa[fru.y][fru.x] = 6;
+}
+
+void printmap(char mapa[v][h]){
+int i,j;
+
+for(i=0; i<v;i++){
+    for(j=0;j<h;j++){
+        printf("%c", mapa[i][j]);
+    }
+    printf("\n");
+}
+}
+
+void bucle(char mapa[v][h], int tam){
+
+int muerte;
+muerte = 0;
+
+do{
+    system("cls"); //system("clear"); en Linux
+    printmap(mapa);
+    input(mapa, &tam, &muerte);
+    reescribir(mapa,tam);
+
+}while(muerte == 0 && tam<24);
+
+}
+
+void input(char mapa[v][h], int *tam, int *muerte){
+int i;
+i=1;
+char letra;
+
+    if(ser[0].x == 0 || ser[0].x == h-1 || ser[0].y == 0 || ser[0].y == v-1){
+        *muerte = 1;
+    }
+    for(i=1; i<*tam && *muerte == 0 ; i++){
+        if(ser[0].x == ser[i].x && ser[0].y == ser[i].y){
+            *muerte = 1;
+        }
+    }
+
+    if(ser[0].x == fru.x && ser[0].y == fru.y ){
+        *tam += 1;
+        ser[*tam-1].imagen = 'x',
+
+
+        fru.x = rand() % (h-1);
+        fru.y = rand() % (v-1);
+
+        while(fru.x == 0){
+
+        fru.x = rand() % (h-1);
+        }
+        while(fru.y == 0){
+
+        fru.y = rand() % (v-1);
+        }
+
+    }
+    if(*muerte == 0){
+        if(kbhit() == 1){
+           letra = getch();
+
+           if(letra == 'w' && ser[0].mody !=1){
+            ser[0].modx = 0;
+            ser[0].mody = -1;
+           }
+           if(letra == 's' && ser[0].mody !=-1){
+            ser[0].modx = 0;
+            ser[0].mody = 1;
+           }
+           if(letra == 'a' && ser[0].modx !=1){
+            ser[0].modx = -1;
+            ser[0].mody = 0;
+           }
+           if(letra == 'd' && ser[0].modx !=-1){
+            ser[0].modx = 1;
+            ser[0].mody = 0;
+           }
+        }
+    }
+
+}
+void reescribir(char mapa[v][h],int tam){
+ inputmapa(mapa);
+
+ inputdato2(mapa, tam);
+
+}
+
+void inputdato2(char mapa[v][h], int tam){
+int i;
+i= tam-1;
+    for(i=tam-1; i>0; i--){
+        ser[i].x = ser[i-1].x;
+        ser[i].y = ser[i-1].y;
+    }
+
+    ser[0].x += ser[0].modx;
+    ser[0].y += ser[0].mody;
+
+    for(i=0; i<tam; i++){
+        mapa[ser[i].y][ser[i].x] = ser[i].imagen;
+    }
+
+    mapa[fru.y][fru.x] = 6;
+}
 
 
