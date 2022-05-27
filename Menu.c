@@ -5,8 +5,8 @@
 #define h 65
 #define n 1230
 #define l 17
-#define a 5
 #define q 2
+#define a 5
 
 typedef struct{
     int x,y;
@@ -50,7 +50,7 @@ void reescribir(char mapa[v][h],int tam);
 void inputdato2(char mapa[v][h], int tam);
 void introduccion();
 void juego1();
-void snake();
+void snakez();
 void texto1 ();
 void ahorcado();
 void texto2 ();
@@ -62,8 +62,8 @@ void texto4 ();
 
 int main()
 {
-    char a;
-    char b;
+    int perro;
+    int gato;
     char usuario [30];
     char contrase [30];
     FILE *iniciosesion;
@@ -76,14 +76,14 @@ int main()
     int elegir;
     elegir=0;
     printf("Elige entre las opciones introduciendo el numero de delante\n");
-    printf("1 Iniciar sesion con el email \n ");
-    printf("2 Iniciar sesion con fecha y nombre \n");
-    printf("3 Registrarse\n");
+    printf("10 Iniciar sesion con el email \n ");
+    printf("20 Iniciar sesion con fecha y nombre \n");
+    printf("30 Registrarse\n");
     printf("Opcion:");
     scanf("%i", &elegir);
     switch (elegir)
     {
-    case 1://Iniciar sesion
+    case 10://Iniciar sesion
 
 
     iniciosesion=fopen ("INICIOSESION.txt", "a");
@@ -98,31 +98,38 @@ int main()
     fclose (iniciosesion);
 
     printf("¿Que quieres hacer? \n");
-    printf("1 Salir. \n");
-    printf("2 Jugar. \n");
-    
+    printf("40 Salir. \n");
+    printf("50 Jugar. \n");
+
     scanf("%i", &elegir);
 
 
             switch (elegir)
                 {
-                case 1://Salir
+                case 40://Salir
                 elegir=0;
 
                 break;
 
-                case 2://Jugar
+                case 50://Jugar
                 elegir=0;
                 printf("Eres un detective en colombia.");
-               introduccion();
-     juego1();
-    texto1();
-     snake();
-    texto2();
-     ahorcado();
-    texto3();
-     coches();
-    texto4();
+                introduccion();
+                juego1();
+                scanf("%i", &gato);
+                texto1();
+                printf("Continuamos, pulsa 15\n");
+                scanf("%i", &perro);
+                snakez();
+                scanf("%i", &gato);
+                texto2();
+                scanf("%i", &gato);
+                ahorcado();
+                scanf("%i", &gato);
+                texto3();
+                scanf("%i", &gato);
+                coches();
+                texto4();
 
                 break;
 
@@ -130,7 +137,7 @@ int main()
             }
             break;
 
-            case 2:
+            case 20:
 
 
     iniciosesionfecha=fopen ("INICIOSESIONfecha.txt", "a");
@@ -145,26 +152,26 @@ int main()
     fclose (iniciosesionfecha);
             //Se supone que aquí te lo verifica y tal pero es con ficheros y no se jajaja
             printf("¿Que quieres hacer? \n");
-            printf("1 Salir. \n");
-            printf("2 Jugar. \n");
+            printf("40 Salir. \n");
+            printf("50 Jugar. \n");
 
             scanf("%i", &elegir);
 
 
             switch (elegir)
                 {
-                case 1://Salir
+                case 40://Salir
                 elegir=0;
 
                 break;
 
-                case 2://Jugar
+                case 50://Jugar
                 elegir=0;
                 printf("Eres un detective en colombia.");
                introduccion();
      juego1();
     texto1();
-     snake();
+     snakez();
     texto2();
      ahorcado();
     texto3();
@@ -176,7 +183,7 @@ int main()
         break;
 
 
-    case 3://Registrarse
+    case 30://Registrarse
     elegir=0;
     printf ("Registarse\n");
 
@@ -190,7 +197,7 @@ int main()
     fprintf(registro, "%i", contrasena);
 
     fclose (registro);
-    return 0;
+
 
 
 }
@@ -200,9 +207,9 @@ int main()
 	int puerta;
 	int salida;
 	int operacion, operacion2, operacion3;
-	int a,b,c,d;
-	
-	
+	int b,c,d;
+
+
 	printf("^ANYO 2017^\n");
 	printf("Mi nombre es Sven, naci en Noruega en 1986. Estudie en la Universidad Politecnica de Madrid, donde curse\n");
 	printf("ingenieria industrial. Despues de 7 largos anyos suspendiendo mas que aprobando, logre graduarme y entrar en una empresa\n");
@@ -212,37 +219,38 @@ int main()
 	printf(" que tenia mi madre por su vieja Colorado.Aun recuerdo esas calidas tardes donde me contaba sus anecdotas. Como la echo de menos\n");
 	printf("*AL DIA SIGUIENTE* ¡QUE HA SIDO ESO!Ha sonado un fuerte estruendo, como si hubiera habido un impacto contra algo.       *MEGAFONIA:ATENCION A TODOS LOS PASAJEROS\n");
 	printf("HA HABIDO UN PERCANCE, ESTAMOS INTENTANDO REPARARLO, QUE NO CUNDA EL PANICO.* Vale, necesito subir a cubierta para ver  que esta pasando. Hay tres puertas, sin ningun cartel\n");
-	 
-	 
-	 
+
+
+
  }
  void juego1(){
   int primero;
 	int puerta;
 	int salida;
 	int operacion, operacion2, operacion3;
-	int a,b,c,d;
-	
-		printf("¿Cual de todas las puertas sera? *Introduce numero de puerta, de la 1 a la 3*\n");
+	int b,c,d;
+
+		printf("¿Cual de todas las puertas sera? *Introduce numero de puerta, 1 o 2*\n");
 	scanf("%i",&puerta);
-	
-	
+
+
 	if(puerta == 1)
 	{
-		
+
 		printf("Aiba, esta es la cocina, pero ya que estoy aqui podria preguntar a alguien.\n");
 	    printf("Hola buenas, sabe usted que ha sido ese gran estruendo.\n");
 	    printf("COCINERO: Caballero que hace usted aqui, vayase ahora mismo o llamare a seguridad!\n");
 	    printf("Oiga usted calmese, solo venia a preguntar. (Que raro, porque ha reaccionado asi?)\n");
 	    printf("Volvere atras mejor\n");
-		printf("*Introduce el numero de otra puerta*\n");
+		printf("*Introduce el numero de otra puerta 2*\n");
 		scanf("%i",&puerta);
 	}
 		if(puerta==2)
 	{
-	    
+
 	    printf("Esta puerta esta chapada, voy a tener que buscar alguna llave\n");
-	    printf("*Introduce el numero de otra puerta*\n");
+	    printf("*Se ha abierto una nueva puerta 3*\n");
+	    printf("Introduce el número de puerta 3\n");
 	    scanf("%i",&puerta);
 	    if(puerta==3)
 	    {
@@ -259,7 +267,7 @@ int main()
 				printf("Aqui lo unico que hay son ropa interior sudada y mucho polvo, alucino\n");
 				printf("Ya solo me queda mirar en la estanteria.\n");
 				printf("BINGO!Aqui esta la llave, volvamos a la puerta 2!\n");
-				
+
 				printf("Bien, ya estoy en la puerta 2, vamos a probar la llave\n");
 printf("YEESS!*La llave abrio la puerta y entro una gelida ventisca* Joder que frio\n");
 printf("Ahi esta el capitan con unos cuantos oficiales, ire a preguntar que pasa\n");
@@ -290,7 +298,7 @@ if(salida==1)
 	if(operacion!=12)
 	{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 	}
 	else if(operacion==12)
 	{
@@ -300,7 +308,7 @@ if(salida==1)
 		if(operacion2!=145)
 		{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 		}
 		else if(operacion2==145)
 		{
@@ -310,7 +318,7 @@ if(salida==1)
 			if(operacion3!=281)
 			{
 			printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		    return 0;
+
 			}
 			else if(operacion3==281)
 			{
@@ -336,7 +344,7 @@ else if(salida==2)
 	if(operacion!=12)
 	{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 	}
 	else if(operacion==12)
 	{
@@ -346,7 +354,7 @@ else if(salida==2)
 		if(operacion2!=145)
 		{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 		}
 		else if(operacion2==145)
 		{
@@ -356,7 +364,7 @@ else if(salida==2)
 			if(operacion3!=281)
 			{
 			printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		    return 0;
+
 			}
 			else if(operacion3==281)
 			{
@@ -374,14 +382,14 @@ else if(salida==2)
 
 
 }
-				
-				
-				
-				
-				
-				
+
+
+
+
+
+
 			}
-			
+
 			else if(puerta==1)
 			{
 				printf("Aiba, esta es la cocina, pero ya que estoy aqui podria preguntar a alguien.\n");
@@ -407,8 +415,8 @@ else if(salida==2)
 				printf("Ya solo me queda mirar en la estanteria.\n");
 				printf("BINGO!Aqui esta la llave, volvamos a la puerta 2!\n");
 		}
-			
-			
+
+
 			else if(primero==6)
 			{
 				printf("Vale, vamos a revisar la estanteria, Veamos, hay un libro, una gorra y... BINGO! Aqui hay una llave, veamos mas puertas!\n");
@@ -453,7 +461,7 @@ if(salida==1)
 	if(operacion!=12)
 	{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 	}
 	else if(operacion==12)
 	{
@@ -463,7 +471,7 @@ if(salida==1)
 		if(operacion2!=145)
 		{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 		}
 		else if(operacion2==145)
 		{
@@ -473,7 +481,7 @@ if(salida==1)
 			if(operacion3!=281)
 			{
 			printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		    return 0;
+
 			}
 			else if(operacion3==281)
 			{
@@ -499,7 +507,7 @@ else if(salida==2)
 	if(operacion!=12)
 	{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 	}
 	else if(operacion==12)
 	{
@@ -509,7 +517,7 @@ else if(salida==2)
 		if(operacion2!=145)
 		{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 		}
 		else if(operacion2==145)
 		{
@@ -519,7 +527,7 @@ else if(salida==2)
 			if(operacion3/=281)
 			{
 			printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		    return 0;
+
 			}
 			else if(operacion3==281)
 			{
@@ -533,9 +541,9 @@ else if(salida==2)
 			{
 				printf("b");
 			}
-			
+
 		}
-			
+
 			printf("Bien, ya estoy en la puerta 2, vamos a probar la llave\n");
 printf("YEESS!*La llave abrio la puerta y entro una gelida ventisca* Joder que frio\n");
 printf("Ahi esta el capitan con unos cuantos oficiales, ire a preguntar que pasa\n");
@@ -566,7 +574,7 @@ if(salida==1)
 	if(operacion!=12)
 	{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 	}
 	else if(operacion==12)
 	{
@@ -576,7 +584,7 @@ if(salida==1)
 		if(operacion2!=145)
 		{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 		}
 		else if(operacion2==145)
 		{
@@ -586,7 +594,7 @@ if(salida==1)
 			if(operacion3!=281)
 			{
 			printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		    return 0;
+
 			}
 			else if(operacion3==281)
 			{
@@ -612,7 +620,7 @@ else if(salida==2)
 	if(operacion!=12)
 	{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 	}
 	else if(operacion==12)
 	{
@@ -622,17 +630,17 @@ else if(salida==2)
 		if(operacion2!=145)
 		{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 		}
 		else if(operacion2==145)
 		{
 			printf("*CORRECTO");
 			printf("MECANICO: Genial, por ultimo, cuanto es (134+15)x2-17?\n");
 			scanf("%i",&operacion3);
-			if(operacion3/=281)
+			if(operacion3!=281)
 			{
 			printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		    return 0;
+
 			}
 			else if(operacion3==281)
 			{
@@ -645,9 +653,9 @@ else if(salida==2)
 
 
 
-			
-			
-			
+
+
+
 		}
 		else if(primero==5)
 		{
@@ -659,8 +667,8 @@ else if(salida==2)
 			printf("Voy a mirar en el cajon de arriba. *Hay una camisa blanca sudada, y una medalla al honor de Estados Unidos\n");
 			printf("Ya solo me queda mirar en la estanteria.\n");
 			printf("BINGO!Aqui esta la llave, volvamos a la puerta 2!\n");
-			
-			
+
+
 			printf("Bien, ya estoy en la puerta 2, vamos a probar la llave\n");
 printf("YEESS!*La llave abrio la puerta y entro una gelida ventisca* Joder que frio\n");
 printf("Ahi esta el capitan con unos cuantos oficiales, ire a preguntar que pasa\n");
@@ -691,7 +699,7 @@ if(salida==1)
 	if(operacion!=12)
 	{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 	}
 	else if(operacion==12)
 	{
@@ -701,7 +709,7 @@ if(salida==1)
 		if(operacion2!=145)
 		{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 		}
 		else if(operacion2==145)
 		{
@@ -711,7 +719,7 @@ if(salida==1)
 			if(operacion3!=281)
 			{
 			printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		    return 0;
+
 			}
 			else if(operacion3==281)
 			{
@@ -737,7 +745,7 @@ else if(salida==2)
 	if(operacion!=12)
 	{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 	}
 	else if(operacion==12)
 	{
@@ -747,7 +755,7 @@ else if(salida==2)
 		if(operacion2!=145)
 		{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 		}
 		else if(operacion2==145)
 		{
@@ -757,7 +765,7 @@ else if(salida==2)
 			if(operacion3/=281)
 			{
 			printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		    return 0;
+
 			}
 			else if(operacion3==281)
 			{
@@ -770,14 +778,14 @@ else if(salida==2)
 
 }
 
-			
-			
+
+
 			}
 		}//primero m
 		else if(primero==6)
 		{
 			printf("Vale, vamos a revisar la estanteria, Veamos, hay un libro, una gorra y... BINGO! Aqui hay una llave, veamos mas puertas!\n");
-		}	
+		}
 		}
 
 
@@ -813,7 +821,7 @@ else if(salida==2)
 		        scanf("%i",&puerta);
 				}
 			}
-			
+
 		}
 		else if(primero==5)
 		{
@@ -825,7 +833,7 @@ else if(salida==2)
 			printf("Voy a mirar en el cajon de arriba. *Hay una camisa blanca sudada, y una medalla al honor de Estados Unidos\n");
 			printf("Ya solo me queda mirar en la estanteria.\n");
 			printf("BINGO!Aqui hay una llave, vayamos a la puerta 2!\n");
-			
+
 			printf("Bien, ya estoy en la puerta 2, vamos a probar la llave\n");
 printf("YEESS!*La llave abrio la puerta y entro una gelida ventisca* Joder que frio\n");
 printf("Ahi esta el capitan con unos cuantos oficiales, ire a preguntar que pasa\n");
@@ -856,7 +864,7 @@ if(salida==1)
 	if(operacion!=12)
 	{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 	}
 	else if(operacion==12)
 	{
@@ -866,7 +874,7 @@ if(salida==1)
 		if(operacion2!=145)
 		{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 		}
 		else if(operacion2==145)
 		{
@@ -876,7 +884,7 @@ if(salida==1)
 			if(operacion3!=281)
 			{
 			printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		    return 0;
+
 			}
 			else if(operacion3==281)
 			{
@@ -902,7 +910,7 @@ else if(salida==2)
 	if(operacion!=12)
 	{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 	}
 	else if(operacion==12)
 	{
@@ -912,7 +920,7 @@ else if(salida==2)
 		if(operacion2!=145)
 		{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 		}
 		else if(operacion2==145)
 		{
@@ -922,7 +930,7 @@ else if(salida==2)
 			if(operacion3/=281)
 			{
 			printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		    return 0;
+
 			}
 			else if(operacion3==281)
 			{
@@ -935,15 +943,15 @@ else if(salida==2)
 
 }
 
-			
-			
+
+
 			}
 		}//primero m
 		else if(primero==6)
 		{
 			printf("Vale, vamos a revisar la estanteria, Veamos, hay un libro, una gorra y... BINGO! Aqui hay una llave, a la puerta 2!\n");
-			
-			
+
+
 			printf("Bien, ya estoy en la puerta 2, vamos a probar la llave\n");
 printf("YEESS!*La llave abrio la puerta y entro una gelida ventisca* Joder que frio\n");
 printf("Ahi esta el capitan con unos cuantos oficiales, ire a preguntar que pasa\n");
@@ -974,7 +982,7 @@ if(salida==1)
 	if(operacion!=12)
 	{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 	}
 	else if(operacion==12)
 	{
@@ -984,7 +992,7 @@ if(salida==1)
 		if(operacion2!=145)
 		{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 		}
 		else if(operacion2==145)
 		{
@@ -994,7 +1002,7 @@ if(salida==1)
 			if(operacion3!=281)
 			{
 			printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		    return 0;
+
 			}
 			else if(operacion3==281)
 			{
@@ -1020,7 +1028,7 @@ else if(salida==2)
 	if(operacion!=12)
 	{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 	}
 	else if(operacion==12)
 	{
@@ -1030,7 +1038,7 @@ else if(salida==2)
 		if(operacion2!=145)
 		{
 		printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		return 0;
+
 		}
 		else if(operacion2==145)
 		{
@@ -1040,7 +1048,7 @@ else if(salida==2)
 			if(operacion3/=281)
 			{
 			printf("GAME OVER, DEBES EMPEZAR EL JUEGO DE NUEVO");
-		    return 0;
+
 			}
 			else if(operacion3==281)
 			{
@@ -1053,24 +1061,24 @@ else if(salida==2)
 
 }
 
-			
-			
+
+
 		}//primero e
 		}//puerta 4
-	
 
-	
 
-	
 
-return 0;
+
+
+
+
 }
 }
 }
 }
-	  
- }
- void snake(){
+
+
+ void snakez(){
 	 int tam;
 char mapa[v][h];
 
@@ -1078,8 +1086,8 @@ inicio(&tam,mapa);
 bucle(mapa,tam);
 
 system("pause");
-return 0;
-     
+
+
  }
  void ahorcado(){
   char frase[60],rep[100],temporal[100];
@@ -1087,9 +1095,9 @@ return 0;
     int longitud,i,j,inicial,acertado=0,temp=0,oportunidades=5;
     int repetido=0,gano=0;
 
-    printf("\tJuego del Ahorcado\n");
+    printf("\n\n\n\n\tJuego del Ahorcado\n");
     printf("Introduzca la palabra a adivinar: ");
-    gets(frase);
+    scanf("%s", &frase);
 
     system("cls");
 
@@ -1195,36 +1203,36 @@ return 0;
     }
 
     printf("\n\n");
-    system("PAUSE");
-    return 0;
-     
+    system("pause");
+
+
  }
  void coches(){
      char mapac[l][a];
 
 inicioc(mapac);
 buclec(mapac);
-return 0;
+
  }
 void texto1 ()
  {
-     printf("El barco se ha empezado a hundir mas rápido de lo que la flota y los tripulantes pensaban y al abrir los ojos, te encuentras que la marea te ha llevado a una isla desierta\n");
+     printf("\n\n\n\nEl barco se ha empezado a hundir mas rápido de lo que la flota y los tripulantes pensaban y al abrir los ojos, te encuentras que la marea te ha llevado a una isla desierta\n");
      printf("Lo primero que sientes es la boca seca, y una sensacion de hambre desmesurada\n");
      printf("*pensamiento interno* Tengo que buscar algo de comer si quiero sobrevivir\n");
      printf("Sin saber como, te ves convertido en serpiente, crees que es por las horas sin comer o el cansancio\n");
  }
  void texto2()
  {
-     printf ("Con el estomago lleno y tropecientos cocos comidos se ven las cosas de otra manera, pero sientes que te invade una sensacion de agobio al no ver a nadie\n");
+     printf ("\n\n\n\nCon el estomago lleno y tropecientos cocos comidos se ven las cosas de otra manera, pero sientes que te invade una sensacion de agobio al no ver a nadie\n");
      printf("Echas a andar y despues de varios kilometros, empiezas a oir voces y canticos de humanos\n");
      printf("Cual es tu sorpresa cuando te acercas y ves una tribu indigena\n");
      printf("*pensamiento interno* ¿Voy hacia ellos? ¿Me alejo? Ire\n");
      printf("Indigena 1:si quieres pertener a nuestra tribu deberás pasar la prueba DIOSA");
-     
+
  }
  void texto3 ()
  {
-     printf("Ya eres una celebridad para ellos, y te tratan como uno de sus reyes.\n");
+     printf("\n\n\n\nYa eres una celebridad para ellos, y te tratan como uno de sus reyes.\n");
      printf("Decides dar un paseo para conocer mejor la isla\n");
      printf("*pensamiento interno* ¿QUE?¿ESCUCHO UN MOTOR?No puede ser\n");
      printf("Te acercas a donde proviene el ruido y tus ojos no dan credito a lo que ven: UN COCHE\n");
@@ -1571,6 +1579,8 @@ i= q-1;
 
 
 }
+
+
 
 
 
