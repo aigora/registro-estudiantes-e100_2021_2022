@@ -4,6 +4,9 @@
 #define v 21
 #define h 65
 #define n 1230
+#define l 17
+#define a 5
+#define q 2
 
 typedef struct{
     int x,y;
